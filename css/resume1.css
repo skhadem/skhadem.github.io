@@ -214,3 +214,38 @@ a:hover, a:focus, a:active {
 .fab:hover{
     color: #7DF9FF;
 }
+
+.clearfix {
+    overflow: auto;
+}
+.tool {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tool .tooltiptext {
+    font-size: 20px;
+    visibility: hidden;
+    width: auto;
+    background-color: rgba(134,142,150, 0.5);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tool:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* div {
+    border:1px dashed red;
+} */

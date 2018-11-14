@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>About Me</title>
+    <title>Soroush</title>
+    <link rel="shortcut icon" href="img/wave.ico">
 
     <!-- Bootstrap core CSS -->
     <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -23,7 +24,7 @@
     <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template -->
-    <link href="css/resume.css" rel="stylesheet">
+    <link href="css/resume1.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
   </head>
@@ -50,6 +51,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
@@ -103,8 +107,10 @@
               <h3 class="mb-0">Autonomous Robotics and Perception Group</h3>
               <div class="subheading mb-3">CU Boulder</div>
               <ul>
-                  <li>Working to improve radar algorithms on TI mmwave chip</li>
-                  <li>Radar data manipulation and visualization using MATLAB to be used with SLAM on autonomous drones</li>
+                  <li>Developing a SLAM algorithim based on radar scans to be used on autonomous drones to map subterranean environments</li>
+                  <li>Using ROS to interface with TI mmWave radar, Hokuyo lidar and Intel RealSense camera to compare data outputs</li>
+                  <li>Using MATLAB to quantify and compare measurements from different sensors</li>
+                  <li>Modifying firmware to improve radar algorithms on TI mmwave chip</li>
               </ul>
             </div>
             <div class="resume-date text-md-right">
@@ -177,65 +183,136 @@
 
       <hr class="m-0">
 
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="projects">
         <div class="my-auto">
+            <h2 class="mb-5">Projects</h2>
+            <div class="resume-content mr-auto">
+                <h3> University of Colorado Robosub Software Lead </h3>
+                <div class="clearfix">
+                    <img src="img/2018_sub.jpg" width="50%" style="float:left; margin-right:20px"> <p style="text-indent:5%">The RoboSub team at CU Boulder competes annually at the <a href="https://www.robonation.org/competition/robosub"  target="_blank">RoboSub Competition</a> held in San Diego. This international competition is centered around creating an Autonomous Underwater Vehicle (AUV) to autonomously complete certain tasks.</p>
+                     <br>
+                     <p style="text-indent:5%">As a relatively new team at the competiton, the software has been written from scratch, and improvements are made daily. It is exciting to test out new code, as almost everything is a first for our team.</p>
+                </div>
+                <br>
+                <div width="100%">
+                <p> As software lead, I have gained extensive experience with ROS (Robotic Operating System) in Python as well as C++. Since I have to understand the entire software stack, I have also gotten hands-on experience with robotics methods that are commonly used in industry. Some of the software tools that are employed include:
+                    <ul>
+                        <li>Extended kalman filter to integrate DVL, IMU, and pressure sensor data to give absolute odometry </li>
+                        <li>PID control loop for movement</li>
+                        <li>Neural network using YOLO (You Only Look Once) to classify objects in images</li>
+                        <li>OpenCV to localize these objects in the global frame </li>
+                    </ul>
+                    All of the software used on the sub, including the software I have developed, can be found on our <a href="https://github.com/CU-Robosub"  target="_blank">GitHub</a>.
+                </p>
+            </div>
+            <br>
+            <div class="clearfix">
+                <img src="img/yolo_dice_roullette_screenshot.png" width="50%" style="float:right; margin-left:20px"> <p>Screenshot of the output bounding boxes of the neural net. The images are processed at 0.3 fps, due to computing limitations on the vehicle. A goal of this upcoming year is to use an external GPU and cuda to improve the speed of the neural net</p>
+            </div>
+            </div>
+        </div>
+
+        <div class="my-auto">
+        </div>
+
+    </section>
+
+      <hr class="m-0">
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
+
+        <div class="my-auto">
+
           <h2 class="mb-5">Skills</h2>
 
           <div class="subheading mb-3"> Programming Languages</div>
           <ul class ="list-inline dev-icons">
               <li class="list-inline-item">
-                <i class="fab icon-python"></i>
+                <i class="fab icon-python tool">
+                    <span class="tooltiptext">Python</span>
+                </i>
               </li>
               <li class="list-inline-item">
-                <i class="fab icon-matlab_logo"></i>
+                <i class="fab icon-matlab_logo tool">
+                    <span class="tooltiptext">MATLAB</span>
+                </i>
               </li>
               <li class="list-inline-item">
-                <i class="fab icon-swift"></i>
+                <i class="fab icon-document-file-cpp tool">
+                    <span class="tooltiptext">C++</span>
+                </i>
               </li>
               <li class="list-inline-item">
-                <i class="fab icon-document-file-cpp"></i>
+                <i class="fab icon-swift tool">
+                    <span class="tooltiptext">Swift</span>
+                </i>
               </li>
               <li class="list-inline-item">
-                <i class="fab icon-javascript"></i>
+                <i class="fab icon-javascript tool">
+                    <span class="tooltiptext">JavaScript</span>
+                </i>
               </li>
               <li class="list-inline-item">
-                <i class="fab icon-document-file-c"></i>
+                <i class="fab icon-document-file-c tool">
+                    <span class="tooltiptext">C</span>
+                </i>
               </li>
               <li class="list-inline-item">
-                <i class="fab icon-embed2"></i>
+                <i class="fab icon-embed2 tool">
+                    <span class="tooltiptext">HTML</span>
+                </i>
               </li>
           </ul>
 
           <div class="subheading mb-3">Programming Tools</div>
           <ul class="list-inline dev-icons">
             <li class="list-inline-item">
-              <i class="fab icon-linux"></i>
+              <i class="fab icon-linux tool">
+                  <span class="tooltiptext">Linux</span>
+              </i>
             </li>
             <li class="list-inline-item">
-              <i class="fab icon-ros_logo"></i>
+              <i class="fab icon-ros_logo tool">
+                  <span class="tooltiptext">ROS</span>
+              </i>
             </li>
             <li class="list-inline-item">
-              <i class="fab icon-aws"></i>
+              <i class="fab icon-aws tool">
+                  <span class="tooltiptext">Amazon Web Services</span>
+              </i>
             </li>
             <li class="list-inline-item">
-              <i class="fab icon-opencv"></i>
+              <i class="fab icon-opencv tool">
+                  <span class="tooltiptext">OpenCV</span>
+              </i>
             </li>
             <li class="list-inline-item">
-              <i class="fab icon-yologo_2"></i>
+              <i class="fab icon-yologo_2 tool">
+                  <span class="tooltiptext">YOLO</span>
+              </i>
             </li>
             <li class="list-inline-item">
-              <i class="fab icon-mysql"></i>
+              <i class="fab icon-mysql tool">
+                  <span class="tooltiptext">MySQL</span>
+              </i>
             </li>
             <li class="list-inline-item">
-              <i class="fab icon-mongodb"></i>
+              <i class="fab icon-mongodb tool">
+                  <span class="tooltiptext">MongoDB</span>
+              </i>
             </li>
             <li class="list-inline-item">
-              <i class="fab icon-bluetooth"></i>
+              <i class="fab icon-bluetooth tool">
+                  <span class="tooltiptext">Bluetooth Low Energy</span>
+              </i>
             </li>
           </ul>
 
           <div class="subheading mb-3">Areas of Interest</div>
           <ul class="fa-ul mb-0" style="list-style-type:none">
+              <li>
+                <i class="fa-li fa icon-heart"></i>
+                Robotics</li>
+              <li>
             <li>
               <i class="fa-li fa icon-heart"></i>
               Machine Learning</li>
@@ -247,7 +324,7 @@
               Cloud Computing</li>
             <li>
               <i class="fa-li fa icon-heart"></i>
-              SQL Databases</li>
+              Databases/ Web</li>
           </ul>
         </div>
       </section>
