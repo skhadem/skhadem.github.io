@@ -25,7 +25,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/resume1.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style1.css" rel="stylesheet">
 
   </head>
 
@@ -78,7 +78,7 @@
           <div class="subheading mb-5">Boulder, CO · (303) 570-1915 ·
             <a href="mailto:name@email.com">soroush13khadem@gmail.com</a>
           </div>
-          <p class="lead mb-5">Software developer with passions in computer vision and robotics. Most experienced in Python and ROS. Recent projects involve using the combination of a YOLO neural network and OpenCV to localize obstacles for robotics. Some experience with iOS in Swift as well as front end JavaScript web development.</p>
+          <p class="lead mb-5">Software developer with passions in computer vision and robotics. Most experience involves Python and ROS. Some experience with iOS in Swift as well as front end JavaScript web development.</p>
           <div class="social-icons">
             <a href="https://github.com/skhadem" target="_blank">
               <i class="fab icon-github"></i>
@@ -129,7 +129,7 @@
               </ul>
             </div>
             <div class="resume-date text-md-right">
-              <span class="text-primary">May 2016 - Present</span>
+              <span class="text-primary">May 2016 - November 2018</span>
             </div>
           </div>
 
@@ -186,8 +186,14 @@
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="projects">
         <div class="my-auto">
             <h2 class="mb-5">Projects</h2>
+
             <div class="resume-content mr-auto">
-                <h3> University of Colorado Robosub Software Lead </h3>
+                <div class="resume-item d-flex flex-column flex-md-row mb-5">
+                    <h3> University of Colorado Robosub Software Lead </h3>
+                    <div class="resume-date text-md-right">
+                      <span class="text-primary">July 2018 - Present</span>
+                    </div>
+                </div>
                 <div class="clearfix">
                     <img src="img/2018_sub.jpg" width="50%" style="float:left; margin-right:20px"> <p style="text-indent:5%">The RoboSub team at CU Boulder competes annually at the <a href="https://www.robonation.org/competition/robosub"  target="_blank">RoboSub Competition</a> held in San Diego. This international competition is centered around creating an Autonomous Underwater Vehicle (AUV) to autonomously complete certain tasks.</p>
                      <br>
@@ -212,8 +218,62 @@
             </div>
         </div>
 
-        <div class="my-auto">
+        <br>
+        <br>
+
+        <div class="resume-content mr-auto">
+            <div class="resume-item d-flex flex-column flex-md-row mb-5">
+                <h3> Implementation of 3D Bounding Box Paper </h3>
+                <div class="resume-date text-md-right">
+                  <span class="text-primary">In Progress</span>
+                </div>
+            </div>
+            <div class="clearfix">
+                <img src="img/3d-deepbox-screenshot.png" width="75%" style="float:left; margin-right:20px"> <p style="text-indent:5%">Image showing the truth data from the KITTI dataset projected onto an image. (Still not perfect, the front is marked incorrectly)</p>
+                 <br>
+            </div>
+            <br>
+            <div width="100%">
+            <p> I am currently working on implemting this interesting <a href="https://arxiv.org/pdf/1612.00496.pdf"  target="_blank">paper</a> in order to get 3D bounding boxes from a single image. I found a repo that was a good start, but lacking in the evaluation aspect of the net, so I <a href="https://github.com/skhadem/3D-BoundingBox"  target="_blank">forked</a> it and am going to rewrite alot of it.
+                <br>
+                <br>
+                The important aspect of the implementation in the paper is that the 3D Bounding Box is to be constrained by the 2D box, which allows for the constraints to be solved for in order to determine 3D location. This seemingly easy part is taking a long time to work out due to linear algebra fun:
+                <br>
+                <br>
+                <img src="img/linear_alg.png" style="float:center;">
+                <br>
+                <br>
+                After I am able to write an algorithim to solve the above equation (which is actually a set of 4 equations with 64 possible constraints) I am going to try and "ROSify" the net and see if I can run it on a video.
+            </p>
         </div>
+        <br>
+
+        </div>
+
+        <div class="resume-content mr-auto">
+            <div class="resume-item d-flex flex-column flex-md-row mb-5">
+                <h3> FFDDCU (Freakin' Fast Drivable Data Collection Unit) </h3>
+                <div class="resume-date text-md-right">
+                  <span class="text-primary">December 2017</span>
+                </div>
+            </div>
+            <h4> Freshmen Projects Final (Awarded Best Project in Section)</h4>
+            <div class="clearfix">
+                <img src="img/ffddcu.jpg" width="50%" style="float:left; margin-right:30px"> <p style="text-indent:5%">The FFDDCU was a very successful final project for an intro projects course. Features of the tank:
+                    <ul>
+                        <li>Arduino reading pressure, temperature, and light</li>
+                        <li>Raspberry Pi taking in sensor information from Arduino</li>
+                        <li>Pi uploaded live video feed and sensor plots to a Web Server</li>
+                        <li>Motor commands sent to Pi from web, drivable from anywhere</li>
+                    </ul>
+                        I worked on the electronics of the tank and the software on the Arduino to interface the sensors and communicate with the Pi. Sadly, due to power contraints, the tank didn't end up being "Freakin' Fast" but the name stayed.</p>
+                 <br>
+            </div>
+            <br>
+        <br>
+
+        </div>
+
 
     </section>
 
@@ -281,14 +341,19 @@
               </i>
             </li>
             <li class="list-inline-item">
-              <i class="fab icon-opencv tool">
-                  <span class="tooltiptext">OpenCV</span>
-              </i>
-            </li>
-            <li class="list-inline-item">
               <i class="fab icon-yologo_2 tool">
                   <span class="tooltiptext">YOLO</span>
               </i>
+            </li>
+            <li class="list-inline-item">
+                <i class="fab icon-opencv tool">
+                    <span class="tooltiptext">OpenCV</span>
+                </i>
+            </li>
+            <li class="list-inline-item">
+                <i class="fab icon-pytorch-logo tool">
+                    <span class="tooltiptext">PyTorch</span>
+                </i>
             </li>
             <li class="list-inline-item">
               <i class="fab icon-mysql tool">
@@ -357,7 +422,7 @@
         <div class="my-auto">
           <h2 class="mb-5">Interests</h2>
           <p>Apart from all things computing, I enjoy spending time in the mountains hiking, camping and snowboarding. I am an aspiring photogropher and chef, and spend most nights (attempting) to cook something new. </p>
-          <p class="mb-0">Winter is the best season, not just for skiing but also for the overlap of the NBA and NFL seasons. As an avid Denver sports fan, I follow the Nuggets and Broncos closely, with the optimism of winning the 'ship every year that seemingly only exists for us Denver fans.</p>
+          <p class="mb-0">Winter is the best season, not just for snowboarding but also for the overlap of the NBA and NFL seasons. As an avid Denver sports fan, I follow the Nuggets and Broncos closely, with the optimism that is prevalent for us Denver sports fans.</p>
         </div>
       </section>
 
