@@ -238,21 +238,22 @@
                 </div>
             </div>
             <div class="clearfix">
-                <img src="img/3d-deepbox-screenshot.png" width="75%" style="float:left; margin-right:20px"> <p style="text-indent:5%">Image showing the truth data from the KITTI dataset projected onto an image. (Still not perfect, the front is marked incorrectly)</p>
+                <img src="img/3dbbox.png" width="75%" style="float:left; margin-right:20px"> <p style="text-indent:5%">Image showing the truth data from the KITTI dataset projected onto an image.</p>
                  <br>
             </div>
             <br>
             <div width="100%">
-            <p> I am currently working on implemting this interesting <a href="https://arxiv.org/pdf/1612.00496.pdf"  target="_blank">paper</a> in order to get 3D bounding boxes from a single image. I found a repo that was a good start, but lacking in the evaluation aspect of the net, so I <a href="https://github.com/skhadem/3D-BoundingBox"  target="_blank">forked</a> it and am going to rewrite alot of it.
+            <p> I am currently working on implemting this interesting <a href="https://arxiv.org/pdf/1612.00496.pdf"  target="_blank">paper</a> in order to get 3D bounding boxes from a single image. I found a repo that was a good start, but lacking in the evaluation aspect of the net, so I <a href="https://github.com/skhadem/3D-BoundingBox"  target="_blank">forked</a> it and am inthe process of rewriting alot of it.
                 <br>
                 <br>
-                The important aspect of the implementation in the paper is that the 3D Bounding Box is to be constrained by the 2D box, which allows for the constraints to be solved for in order to determine 3D location. This seemingly easy part is taking a long time to work out due to linear algebra fun:
+                The important aspect of the paper is that the 3D Bounding Box is to be constrained by the 2D box, which allows for the projection constraints to be solved for in order to determine 3D location. The fun linear algebra is a system of 4 of the following equations:
                 <br>
                 <br>
                 <img src="img/linear_alg.png" style="float:center;">
                 <br>
                 <br>
-                After I am able to write an algorithim to solve the above equation (which is actually a set of 4 equations with 64 possible constraints) I am going to try and "ROSify" the net and see if I can run it on a video.
+                I have written a way to solve it using the method of least squares, but have yet to get the location to converge using ground truth information, my best guess is due to an incomplete projection matrix being used. Eventually, my goal is to try and create a more robust evaluation and try to run a video through the net.
+
             </p>
         </div>
         <br>
