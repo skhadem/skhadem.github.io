@@ -104,6 +104,10 @@ p.lead {
     color: #adb5bd;
 }
 
+#fade {
+    display: none
+}
+
 @media (min-width: 992px) {
     #sideNav {
         text-align: center;
@@ -247,6 +251,15 @@ a:hover, a:focus, a:active {
 
 .tool:hover .tooltiptext {
     visibility: visible;
+}
+
+/* .exp-logo {
+    width: 15rem
+} */
+
+.exp-logo img {
+    max-width: 15rem;
+    padding-top: 20px
 }
 
 div {

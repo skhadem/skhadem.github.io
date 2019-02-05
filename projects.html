@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Soroush</title>
+    <link rel="shortcut icon" href="img/wave.ico">
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+
+    <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"> -->
+    <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="css/resume1.css" rel="stylesheet">
+    <link href="css/style1.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" class="mainbody">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none">Soroush Khadem</span>
+            <span class="d-none d-lg-block">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/me.jpg" alt="">
+            </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="./experience.html">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="./education.html">Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="./projects.html">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="./skills.html">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="./awards.html">Awards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="./interests.html">Interests</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="fade">
+        <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="projects">
+            <h2 class="mb-5">Projects</h2>
+
+            <div class="my-auto">
+
+                <div class="resume-item d-flex flex-column flex-md-row">
+                    <div class="resume-content mr-auto">
+                        <h3 class="mb-0"> Implementation of 3D Bounding Box Paper </h3>
+                        <div width="100%">
+                            <p style="text-indent: 5%">
+                                After reading this fascinating <a href="https://arxiv.org/pdf/1612.00496.pdf" target="_blank">paper</a>
+                                discussing 3D bounding boxes from a single image,
+                                published by contributers from Zoox and
+                                George Mason University, I was interested in finding the neural net implementation. I found a repo that
+                                had a partial start, so I took it over
+                                (<a href="https://githubcom/skhadem/3D-BoundingBox" target="_blank">here</a>) and am in the process
+                                of creating a robust localization from a single image.
+                            </p>
+                            <p style="text-indent: 5%">
+                                The important aspect of the paper is that the 3D Bounding Box is to be constrained tightly by the 2D detection
+                                region which allows for a set of four 3D corners to lie on a side of the 2D box when projected onto the image.
+                                The result is a system of 16 equations using the regressed orientation and dimension allowing for the localization
+                                of the object to be solved for. As it is an over-constrained system of equations, SVD is used to solve for the set
+                                of corners that reduces the reprojection error.
+                            </p>
+                        </div>
+                        <div class="clearfix">
+                            <img src="img/2d-top-3d-bottom1.png" width="100%" height="50%" style="float:left; margin-right:20px">
+                            <p style="text-indent:5%">
+                                The top image shows the detection of cars using the YOLO neural network architecture trained
+                                on Pascal VOC. The cropped images of the car are then passed through a convolutional
+                                neural net trained on the KITTI dataset that produces a multibin orientation estimate and
+                                dimension estimation, which is used to solve for location, allowing for projection of the 3D
+                                box onto the image.
+                            </p>
+                            <br>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <span class="text-primary">In Progress</span>
+                    </div>
+                </div>
+
+
+                <div class="resume-item d-flex flex-column flex-md-row">
+                    <div class="resume-content mr-auto">
+                        <h3 class="mb-0"> University of Colorado Robosub Software Lead </h3>
+                        <div class="clearfix">
+                            <img src="img/2018_sub.jpg" width="50%" style="float:left; margin-right:20px">
+                            <p style="text-indent:5%">
+                                The RoboSub team at CU Boulder competes annually at the
+                                <a href="https://www.robonation.org/competition/robosub" target="_blank">RoboSub Competition</a>
+                                held in San Diego. This international competition is centered around creating an Autonomous
+                                Underwater Vehicle (AUV) to autonomously complete certain tasks.
+                            </p>
+                            <br>
+                            <p style="text-indent:5%">
+                                As a relatively new team at the competiton, the software has been written from scratch, and
+                                improvements are made daily. It is exciting to test out new code, as almost everything is a
+                                first for our team.
+                            </p>
+                        </div>
+                        <br>
+                        <div width="100%">
+                            <p>
+                                As software lead, I have gained extensive experience with ROS (Robotic Operating System) in
+                                Python as well as C++. Since I have to understand the entire software stack, I have also gotten
+                                hands-on experience with robotics methods that are commonly used in industry. Some of the
+                                software tools that are employed include:
+                                <ul>
+                                    <li>Extended kalman filter to integrate DVL, IMU, and pressure sensor data to give absolute odometry </li>
+                                    <li>PID control loop for movement</li>
+                                    <li>Neural network using YOLO (You Only Look Once) to classify objects in images</li>
+                                    <li>OpenCV to localize these objects in the global frame </li>
+                                </ul>
+                                All of the software used on the sub, including the software I have developed,
+                                can be found on our <a href="https://github.com/CU-Robosub" target="_blank">GitHub</a>.
+                            </p>
+                        </div>
+                        <br>
+                        <div class="clearfix">
+                            <img src="img/yolo_dice_roullette_screenshot.png" width="50%" style="float:right; margin-left:20px">
+                            <p>
+                                Example of the output bounding boxes of the YOLO-based neural net. Any classified objects are then passed to
+                                OpenCV algorithims in order to detect known 2D points and use solvePnP (Perspective n Point) to obtain a 3D
+                                Pose of that object.
+                            </p>
+                        </div>
+                        <br>
+                        <div>
+                            <p>
+                                Some of the things I am currently working on for the sub:
+                                <ul>
+                                    <li>Improving speed of Neural Net by using an eGPU and Cuda</li>
+                                    <li>Creating an accurate model of the sub to implement an LQR controls system</li>
+                                    <li>More robust computer vision localization</li>
+                                    <li>Improvements to Global task logic and map of objects from CV poses</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <span class="text-primary">July 2018 - Present</span>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row mb-5">
+                    <div class="resume-content mr-auto">
+                        <h3 clas="mb-0"> FFDDCU (Freakin' Fast Drivable Data Collection Unit) </h3>
+                        <h4> Freshmen Projects Final (Awarded Best Project in Section)</h4>
+                        <div class="clearfix">
+                            <img src="img/ffddcu.jpg" width="50%" style="float:left; margin-right:30px">
+                            <p style="text-indent:5%">
+                                The FFDDCU was a very successful final project for an intro projects course. Features of the tank:
+                                <ul>
+                                    <li>Arduino reading pressure, temperature, and light</li>
+                                    <li>Raspberry Pi taking in sensor information from Arduino</li>
+                                    <li>Pi uploaded live video feed and sensor plots to a Web Server</li>
+                                    <li>Motor commands sent to Pi from web, drivable from anywhere</li>
+                                </ul>
+                                I worked on the electronics of the tank and the software on the Arduino to interface the sensors and communicate with the Pi.
+                                Sadly, due to power contraints, the tank didn't end up being "Freakin' Fast" but the name remained.
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <span class="text-primary">December 2017</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+    <!-- Plugin JavaScript -->
+    <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/resume.js"></script>
+
+</body>
