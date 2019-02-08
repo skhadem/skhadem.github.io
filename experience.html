@@ -32,7 +32,7 @@
 <body class="mainbody">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <a class="navbar-brand js-scroll-trigger" href="">
             <span class="d-block d-lg-none">Soroush Khadem</span>
             <span class="d-none d-lg-block">
                 <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/me.jpg" alt="">
@@ -69,83 +69,95 @@
     </nav>
 
 
+
+
     <div id="fade">
-        <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-            <div class="my-auto">
-                <h2 class="mb-5">Experience</h2>
-
-                <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                    <div class="resume-content mr-auto">
-                        <h3 class="mb-0">Globus Medical, Robotics Division</h3>
-                        <div class="subheading mb-3">Boston, Massachusetts</div>
-                        <ul>
-                            <li>C++ development with Qt framework for robotic guided spinal surgery using IR
-                                tracking of surgical tools and CT/ flouro scans of patient</li>
-                            <li>UI development using QML with C++ backend</li>
-                            <li>Advanced git workflow</li>
-                        </ul>
+        <table id="exp-table" style="margin: 0px" width="100%">
+            <tr>
+                <td id="globus">
+                    <div class="exp-logo">
+                        <img src="img/globus_logo.png" />
                     </div>
-                    <div class="resume-date text-md-right">
-                        <span class="text-primary">Jan 2019 - Present</span>
-                        <div class="exp-logo">
-                            <img src="img/globus_logo.png"/>
-                        </div>
+                </td>
+                <td id="arpg">
+                    <div class="exp-logo">
+                        <img src="img/arpg_logo.png" />
                     </div>
-                </div>
-
-                <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                    <div class="resume-content mr-auto">
-                        <h3 class="mb-0">Autonomous Robotics and Perception Group</h3>
-                        <div class="subheading mb-3">University of Colorado Boulder</div>
-                        <ul>
-                            <li>Developing a SLAM algorithim based on radar scans to be used on autonomous drones to map subterranean environments</li>
-                            <li>Using ROS to interface with TI mmWave radar, Hokuyo lidar and Intel RealSense camera to compare data outputs</li>
-                            <li>Using MATLAB to quantify and compare measurements from different sensors</li>
-                            <li>Modifying firmware to improve radar algorithms on TI mmwave chip</li>
-                        </ul>
+                </td>
+                <td id="nist">
+                    <div class="exp-logo">
+                        <img style="filter: invert(100%)" src="img/nist_logo.png" />
                     </div>
-                    <div class="resume-date text-md-right">
-                        <span class="text-primary">Sept 2018 - Jan 2019</span>
-                        <div class="exp-logo">
-                            <img src="img/arpg_logo.png"/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                    <div class="resume-content mr-auto">
-                        <h3 class="mb-0">Superconductive Electronics Group</h3>
-                        <div class="subheading mb-3">National Institute of Standards and Technology (NIST)</div>
-                        <ul>
-                            <li>Created an automated python software system to characterize superconducting wafers fabricated at NIST; Led to a 250% increase in the speed of testing chips</li>
-                            <li>Developed an SQL database and JavaScript generation of visual reports from 25GB+ of data</li>
-                            <li>Aided in the development of MATLAB software to generate test patterns for superconducting logic chips fabricated by Northrop Grumman, Lincoln Labs and others</li>
-                        </ul>
-                    </div>
-                    <div class="resume-date text-md-right">
-                        <span class="text-primary">May 2016 - Jan 2019</span>
-                        <div class="exp-logo">
-                            <img style="filter: invert(100%)" src="img/nist_logo.png"/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                    <div class="resume-content mr-auto">
-                        <h3 class="mb-0">Lakeshore Athletic Club</h3>
-                        <div class="subheading mb-3">Member Service Associate</div>
-                        <ul>
-                            <li>Assisted gym members with class booking, payments, and general information on the athletic center </li>
-                        </ul>
-                    </div>
-                    <div class="resume-date text-md-right">
-                        <span class="text-primary"> May 2015 - November 2015</span>
-                    </div>
-                </div>
-            </div>
-
-        </section>
+                </td>
+            </tr>
+        </table>
     </div>
+
+
+    <h2 class="mb-5">Mouse Over</h2>
+
+        <div id="globus-p" class="resume-item" style="display:none">
+            <div class="resume-content mr-auto">
+                <h3 class="mb-0">Globus Medical, Robotics Division</h3>
+                <div class="subheading mb-3">Boston, Massachusetts</div>
+                <ul>
+                    <li>C++ development with Qt framework for robotic guided spinal surgery using IR
+                        tracking of surgical tools and CT/ flouro scans of patient</li>
+                    <li>UI development using QML with C++ backend</li>
+                    <li>Advanced git workflow</li>
+                </ul>
+            </div>
+            <div class="resume-date text-md-right">
+                <span class="text-primary">Jan 2019 - Present</span>
+            </div>
+        </div>
+
+        <div id="arpg-p" class="resume-item" style="display:none">
+            <div class="resume-content mr-auto">
+                <h3 class="mb-0">Autonomous Robotics and Perception Group</h3>
+                <div class="subheading mb-3">University of Colorado Boulder</div>
+                <ul>
+                    <li>Developing a SLAM algorithim based on radar scans to be used on autonomous drones to map subterranean environments</li>
+                    <li>Using ROS to interface with TI mmWave radar, Hokuyo lidar and Intel RealSense camera to compare data outputs</li>
+                    <li>Using MATLAB to quantify and compare measurements from different sensors</li>
+                    <li>Modifying firmware to improve radar algorithms on TI mmwave chip</li>
+                </ul>
+            </div>
+            <div class="resume-date text-md-right">
+                <span class="text-primary">Sept 2018 - Jan 2019</span>
+            </div>
+        </div>
+
+        <div id="nist-p" class="resume-item flex-column flex-md-row mb-5" style="display:none">
+            <div class="resume-content mr-auto">
+                <h3 class="mb-0">Superconductive Electronics Group</h3>
+                <div class="subheading mb-3">National Institute of Standards and Technology (NIST)</div>
+                <ul>
+                    <li>Created an automated python software system to characterize superconducting wafers fabricated at NIST; Led to a 250% increase in the speed of testing chips</li>
+                    <li>Developed an SQL database and JavaScript generation of visual reports from 25GB+ of data</li>
+                    <li>Aided in the development of MATLAB software to generate test patterns for superconducting logic chips fabricated by Northrop Grumman, Lincoln Labs and others</li>
+                </ul>
+            </div>
+            <div class="resume-date text-md-right">
+                <span class="text-primary">May 2016 - Jan 2019</span>
+            </div>
+        </div>
+
+        <div id="lakeshore-p" class="resume-item" style="display:none">
+            <div class="resume-content mr-auto">
+                <h3 class="mb-0">Lakeshore Athletic Club</h3>
+                <div class="subheading mb-3">Member Service Associate</div>
+                <ul>
+                    <li>Assisted gym members with class booking, payments, and general information on the athletic center </li>
+                </ul>
+            </div>
+            <div class="resume-date text-md-right">
+                <span class="text-primary"> May 2015 - November 2015</span>
+            </div>
+        </div>
+
+
+
 
     <!-- Bootstrap core JavaScript -->
     <!-- <script src="vendor/jquery/jquery.min.js"></script> -->

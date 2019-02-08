@@ -27,6 +27,12 @@
 
 })(jQuery); // End of use strict
 
+$('#exp-table td').hover(function() {
+    $('#' + $(this).attr('id') + '-p').toggle("slow");
+})
+
+
+
 $(document).ready(function() {
     // $('#about').hide();
     $('#fade').fadeIn(2000).delay(3000);

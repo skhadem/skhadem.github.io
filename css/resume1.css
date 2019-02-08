@@ -258,8 +258,17 @@ a:hover, a:focus, a:active {
 } */
 
 .exp-logo img {
-    max-width: 15rem;
-    padding-top: 20px
+    max-width: 20rem;
+    /* padding: 40px; */
+    /* margin: 40px; */
+}
+
+#exp-table td {
+    text-align: center;
+}
+
+#exp-table td:hover {
+    border: 2px solid white;
 }
 
 div {
