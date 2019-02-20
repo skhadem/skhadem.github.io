@@ -7,7 +7,8 @@
 /* global variables */
 :root {
     --secondary-color: #028d93;
-    --text-color: #868e96
+    --text-color: #868e96;
+    --sidebar-details-color: #FFFFFF
 }
 
 hr {
@@ -108,7 +109,7 @@ p.lead {
 }
 
 #sideNav .nav-link {
-    color: #adb5bd;
+    color: var(--sidebar-details-color);
 }
 
 #fade {
@@ -144,7 +145,7 @@ p.lead {
         max-width: 10rem;
         max-height: 10rem;
         /* border: 0.5rem solid rgba(255, 255, 255, 0.2); */
-        border: 0.25rem solid #adb5bd;
+        border: 0.25rem solid var(--sidebar-details-color);
     }
 
     #sideNav .navbar-collapse {
