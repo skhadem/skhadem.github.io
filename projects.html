@@ -82,10 +82,8 @@
                                 After reading this fascinating <a href="https://arxiv.org/pdf/1612.00496.pdf" target="_blank">paper</a>
                                 discussing 3D bounding boxes from a single image,
                                 published by contributers from Zoox and
-                                George Mason University, I was interested in finding the neural net implementation. I found a repo that
-                                had a partial start, so I took it over
-                                (<a href="https://github.com/skhadem/3D-BoundingBox" target="_blank">here</a>) and am in the process
-                                of creating a robust localization from a single image.
+                                George Mason University, I decided implementat the work using PyTorch
+                                (<a href="https://github.com/skhadem/3D-BoundingBox" target="_blank">here</a>).
                             </p>
                             <p style="text-indent: 5%">
                                 The important aspect of the paper is that the 3D Bounding Box is to be constrained tightly by the 2D detection
@@ -96,13 +94,22 @@
                             </p>
                         </div>
                         <div class="clearfix">
-                            <img src="img/2d-top-3d-bottom1.png" width="100%" height="50%" style="float:left; margin-right:20px">
+                            <img src="img/2d-top-3d-bottom1.png" width="100%" height="50%" style="float:right; margin-right:20px">
                             <p style="text-indent:5%">
                                 The top image shows the detection of cars using the YOLO neural network architecture trained
                                 on Pascal VOC. The cropped images of the car are then passed through a convolutional
                                 neural net trained on the KITTI dataset that produces a multibin orientation estimate and
                                 dimension estimation, which is used to solve for location, allowing for projection of the 3D
                                 box onto the image.
+                            </p>
+                            <br>
+                        </div>
+                        <div class="clearfix">
+                            <img src="video/3d-bbox-vid.gif" width="100%" height="50%" style="float:left; margin-right:20px">
+                            <p style="text-indent:5%">
+                                Here is the full pipeline running on a video, achieving a speed of around 0.4s per frame. The next step would be
+                                to employ some type of pose filtering in order to reduce the jittering of each pose and to create a visualization
+                                of the road with all the cars in it.
                             </p>
                             <br>
                         </div>

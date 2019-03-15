@@ -28,7 +28,14 @@
 })(jQuery); // End of use strict
 
 $('#exp-table td').hover(function() {
-    $('#' + $(this).attr('id') + '-p').toggle("slow");
+    if ($('#' + $(this).attr('id') + '-p').is(":hidden"))
+    {
+        $('#' + $(this).attr('id') + '-p').toggle("fast");
+    }
+    else
+    {
+        $('#' + $(this).attr('id') + '-p').toggle(":hidden");
+    }
 })
 
 
@@ -145,9 +152,11 @@ var particle_json = {
   "retina_detect": true
 };
 
+if(window.location.href.includes("index.html"))
+{
 
 var particle_config = "data:text/plain;base64,"+window.btoa(JSON.stringify(particle_json));
-
-particlesJS.load('particles-js', particle_config, function() {
-  console.log('callback - particles.js config loaded');
-});
+    particlesJS.load('particles-js', particle_config, function() {
+      console.log('callback - particles.js config loaded');
+  });
+}
