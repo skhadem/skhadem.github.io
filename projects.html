@@ -107,7 +107,9 @@
                         <div class="clearfix">
                             <img src="video/3d-bbox-vid.gif" width="100%" height="50%" style="float:left; margin-right:20px">
                             <p style="text-indent:5%">
-                                Here is the full pipeline running on a video, achieving a speed of around 0.4s per frame. The next step would be
+                                Here is the full pipeline running on a video, achieving a speed of around 0.4s per frame. The biggest bottleneck is the result of
+                                YOLO being run on the CPU, which is an improvement that can be implemented.
+                                Another improvement would be
                                 to employ some type of pose filtering in order to reduce the jittering of each pose and to create a visualization
                                 of the road with all the cars in it.
                             </p>
@@ -117,7 +119,7 @@
                         <br>
                     </div>
                     <div class="resume-date text-md-right">
-                        <span class="text-primary">In Progress</span>
+                        <span class="text-primary">January 2019</span>
                     </div>
                 </div>
 
@@ -171,10 +173,9 @@
                             <p>
                                 Some of the things I am currently working on for the sub:
                                 <ul>
-                                    <li>Improving speed of Neural Net by using an eGPU and Cuda</li>
+                                    <li>Building a map of previous objects seen to not be constrained by a linear progression of tasks</li>
                                     <li>Creating an accurate model of the sub to implement an LQR controls system</li>
                                     <li>More robust computer vision localization</li>
-                                    <li>Improvements to Global task logic and map of objects from CV poses</li>
                                 </ul>
                             </p>
                         </div>
