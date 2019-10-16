@@ -190,7 +190,7 @@ section.resume-section .resume-item .resume-date {
 }
 
 section.resume-section .resume-item .resume-date {
-    padding-left: 7rem;
+    /* padding-left: 7rem; */
 }
 
 @media (min-width: 768px) {
@@ -267,8 +267,10 @@ a:hover, a:focus, a:active {
 
 
 .exp-logo img {
-    max-width: 17rem;
-    /* padding: 40px; */
+    max-width: 15rem;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     /* margin: 40px; */
 }
 
