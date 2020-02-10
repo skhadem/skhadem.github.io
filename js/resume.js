@@ -152,7 +152,7 @@ var particle_json = {
   "retina_detect": true
 };
 
-if(window.location.href.includes("index.html"))
+if(window.location.href.includes("index.html") || window.location.pathname == '/')
 {
 
 var particle_config = "data:text/plain;base64,"+window.btoa(JSON.stringify(particle_json));
