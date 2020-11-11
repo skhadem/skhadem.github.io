@@ -1,0 +1,26 @@
+<html>
+<body>
+
+<h1>Welcome!</h1>
+
+<button onclick="myFunction()">Should Ally Do PA School?</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Let me think...";
+  var text = "No";
+  var rand_val = Math.random();
+  if (rand_val < 0.5) {
+  	text = "Yes";
+  }
+  else if (rand_val > 0.9) {
+  	text = "Maybe";
+   }
+  setTimeout(() => {document.getElementById("demo").innerHTML = text; }, 1000);
+}
+</script>
+
+</body>
+</html>
