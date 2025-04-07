@@ -1,0 +1,289 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 15px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+h3 {
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+/* Controls section */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.subway-lines, .subway-stations {
+    flex: 1;
+    min-width: 250px;
+}
+
+#subway-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.subway-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#station-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Map styling */
+#map {
+    height: 400px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Venue details section */
+.venue-details-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.venue-placeholder {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-style: italic;
+}
+
+.venue-header {
+    margin-bottom: 20px;
+}
+
+.venue-header h2 {
+    color: #2c7d2c;
+    margin-bottom: 5px;
+}
+
+.venue-meta {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Reviews styling */
+.venue-reviews {
+    margin-bottom: 30px;
+}
+
+.venue-reviews h3 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+#existing-reviews {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.review {
+    background-color: #f0f0f0;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.review-author {
+    font-weight: bold;
+}
+
+.review-rating {
+    color: #f39c12;
+}
+
+.review-date {
+    font-size: 12px;
+    color: #777;
+    margin-left: 5px;
+}
+
+.review-comment {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* Add review section */
+.add-review h3 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.review-form {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.submit-review {
+    background-color: #2c7d2c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.submit-review:hover {
+    background-color: #226622;
+}
+
+.review-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.review-status.error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.review-status.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.review-status.info {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .subway-lines, .subway-stations {
+        width: 100%;
+    }
+    
+    #map {
+        height: 300px;
+    }
+    
+    .venue-details-section {
+        padding: 15px;
+    }
+    
+    .submit-review {
+        padding: 10px;
+    }
+}
+
+/* Small phones */
+@media screen and (max-width: 480px) {
+    #subway-buttons {
+        gap: 6px;
+    }
+    
+    .subway-button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    #map {
+        height: 250px;
+    }
+    
+    .venue-details-section {
+        padding: 10px;
+    }
+}

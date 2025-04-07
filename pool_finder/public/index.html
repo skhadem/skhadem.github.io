@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC Pool Finder</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>NYC Pool Finder</h1>
+        <div class="controls">
+            <div class="subway-lines">
+                <h2>Select Subway Line</h2>
+                <div id="subway-buttons"></div>
+            </div>
+            <div class="subway-stations">
+                <h2>Select Station</h2>
+                <select id="station-select" disabled>
+                    <option value="">Select a subway line first</option>
+                </select>
+            </div>
+        </div>
+        <div id="map"></div>
+        
+        <!-- New section for venue details -->
+        <div id="venue-details" class="venue-details-section">
+            <div class="venue-placeholder">
+                <p>Select a pool table location on the map to see details</p>
+            </div>
+            <div class="venue-content" style="display: none;">
+                <div class="venue-header">
+                    <h2 id="venue-name"></h2>
+                    <p id="venue-address"></p>
+                    <div class="venue-meta">
+                        <span id="venue-rating"></span>
+                    </div>
+                </div>
+                
+                <div class="venue-reviews">
+                    <h3>Reviews</h3>
+                    <div id="existing-reviews"></div>
+                </div>
+                
+                <div class="add-review">
+                    <h3>Add Your Review</h3>
+                    <form id="review-form" class="review-form">
+                        <div class="form-group">
+                            <label for="author">Name:</label>
+                            <input type="text" id="author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rating">Rating:</label>
+                            <select id="rating" required>
+                                <option value="">Select</option>
+                                <option value="5">5 - Excellent</option>
+                                <option value="4">4 - Very Good</option>
+                                <option value="3">3 - Good</option>
+                                <option value="2">2 - Fair</option>
+                                <option value="1">1 - Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea id="comment" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-review">Submit Review</button>
+                    </form>
+                    <div id="review-status" class="review-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../src/firebase-config.js"></script>
+    <script src="../src/subway-data.js"></script>
+    <script src="../src/app.js"></script>
+</body>
+</html>
