@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchPoolTablesData();
     createSubwayButtons();
     setupReviewForm();
+    setupAddPlaceModal();
 });
 
 // Fetch pool tables data from Firebase
@@ -211,24 +212,69 @@ function addPoolTableMarkers() {
         return;
     }
     
-    // Create a custom pool table icon
-    const poolTableIcon = L.divIcon({
-        className: 'pool-table-marker',
-        html: `<div style="background-color: green; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
-                <div style="background-color: white; width: 10px; height: 10px;"></div>
-               </div>`,
-        iconSize: [20, 20],
-        iconAnchor: [10, 10]
-    });
+    // Function to create a custom 8-ball pool table icon based on verification status
+    function createPoolTableIcon(verified) {
+        console.log('Creating icon with verified =', verified);
+        
+        // Use alpha transparency for unverified locations
+        const opacity = verified ? '1' : '0.6';
+        const bgColor = verified ? 'black' : '#555555';
+        const questionMark = verified ? '' : `<div style="position: absolute; top: -7px; right: -6px; background-color: #FFC107; color: #000; font-size: 10px; font-weight: bold; width: 14px; height: 14px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.3);">?</div>`;
+        
+        return L.divIcon({
+            className: 'pool-table-marker',
+            html: `<div style="position: relative; background-color: ${bgColor}; width: 24px; height: 24px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.4); opacity: ${opacity};">
+                    <div style="position: relative; background-color: white; width: 10px; height: 10px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                        <span style="position: absolute; color: black; font-size: 8px; font-weight: bold; font-family: Arial;">8</span>
+                    </div>
+                    ${questionMark}
+                   </div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+        });
+    }
     
     poolTablesData.forEach(table => {
+        // Create icon based on verification status
+        const isVerified = table.verified === true;
+        
+        // Debug verification status
+        console.log(`Marker for ${table.name}:`, { 
+            id: table.id,
+            verified: table.verified, 
+            isVerified: isVerified,
+            verificationCount: table.verificationCount 
+        });
+        
+        const poolTableIcon = createPoolTableIcon(isVerified);
+        
         const marker = L.marker([table.lat, table.lng], {
             icon: poolTableIcon,
             title: table.name
         }).addTo(markerLayer);
         
-        // Add simple popup with just the name
-        marker.bindPopup(`<strong>${table.name}</strong>`);
+        // Create popup with name, hours, verification status, and Google Maps link
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(table.name + ' ' + table.address)}`;
+        
+        // Verification badge
+        const verificationBadge = table.verified ? 
+            `<span style="background-color: #4CAF50; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px; margin-left: 5px;">Verified</span>` : 
+            `<span style="background-color: #FFC107; color: black; padding: 2px 5px; border-radius: 3px; font-size: 10px; margin-left: 5px;">Needs Verification</span>`;
+        
+        let popupContent = `
+            <strong>${table.name}</strong> ${verificationBadge}<br>
+            <small>${table.address}</small><br>
+        `;
+        
+        // Add hours if available
+        if (table.hours) {
+            popupContent += `<small><strong>Hours:</strong> ${table.hours}</small><br>`;
+        }
+        
+        // Add Google Maps link
+        popupContent += `<a href="${googleMapsUrl}" target="_blank" style="display:inline-block; margin-top:5px; font-size:12px;">Open in Google Maps</a>`;
+        
+        marker.bindPopup(popupContent);
         
         // Add click event to show venue details below the map
         marker.on('click', () => {
@@ -247,7 +293,90 @@ function showVenueDetails(venue) {
     // Fill in venue details
     document.getElementById('venue-name').textContent = venue.name;
     document.getElementById('venue-address').textContent = venue.address;
-    document.getElementById('venue-rating').textContent = `Rating: ${venue.rating}/5`;
+    
+    // Handle rating display - show "No ratings yet" for new places
+    if (venue.ratingDisplay) {
+        document.getElementById('venue-rating').textContent = venue.ratingDisplay;
+    } else if (venue.rating === 0 || !venue.rating) {
+        document.getElementById('venue-rating').textContent = 'No ratings yet';
+    } else {
+        document.getElementById('venue-rating').textContent = `Rating: ${venue.rating}/5`;
+    }
+    
+    // Add additional venue info if available
+    let additionalInfo = '';
+    
+    if (venue.hours) {
+        additionalInfo += `<p><strong>Hours:</strong> ${venue.hours}</p>`;
+    }
+    
+    if (venue.poolTables) {
+        additionalInfo += `<p><strong>Pool Tables:</strong> ${venue.poolTables}</p>`;
+    }
+    
+    if (venue.tableRate) {
+        additionalInfo += `<p><strong>Table Rate:</strong> ${venue.tableRate}</p>`;
+    }
+    
+    // Add Google Maps link
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue.name + ' ' + venue.address)}`;
+    additionalInfo += `<p><a href="${googleMapsUrl}" target="_blank" class="maps-link">Open in Google Maps</a></p>`;
+    
+    // Find or create the additional info container
+    let infoContainer = document.getElementById('venue-additional-info');
+    if (!infoContainer) {
+        infoContainer = document.createElement('div');
+        infoContainer.id = 'venue-additional-info';
+        infoContainer.className = 'venue-additional-info';
+        document.querySelector('.venue-meta').appendChild(infoContainer);
+    }
+    
+    infoContainer.innerHTML = additionalInfo;
+    
+    // Add verification controls
+    let verificationContainer = document.getElementById('verification-controls');
+    if (!verificationContainer) {
+        verificationContainer = document.createElement('div');
+        verificationContainer.id = 'verification-controls';
+        verificationContainer.className = 'verification-controls';
+        infoContainer.insertAdjacentElement('afterend', verificationContainer);
+    }
+    
+    // Determine verification status
+    const isVerified = venue.verified === true;
+    const verificationCount = venue.verificationCount || 0;
+    
+    // Create verification section
+    const verificationHTML = `
+        <h4>Pool Table Verification</h4>
+        <div class="verification-status">
+            <span class="verification-badge ${isVerified ? 'verified' : 'unverified'}">
+                ${isVerified ? 'Verified' : 'Needs Verification'}
+            </span>
+            <span class="verification-count">
+                ${verificationCount} ${verificationCount === 1 ? 'person has' : 'people have'} verified this location
+            </span>
+        </div>
+        <div class="verification-buttons">
+            <button id="btn-verify" class="btn-verify">
+                Yes, There's a Pool Table Here
+            </button>
+            <button id="btn-unverify" class="btn-unverify">
+                No Pool Table Here
+            </button>
+        </div>
+    `;
+    
+    verificationContainer.innerHTML = verificationHTML;
+    
+    // Add event listeners for verification buttons
+    document.getElementById('btn-verify').addEventListener('click', () => {
+        verifyPoolTable(venue.id, true);
+    });
+    
+    document.getElementById('btn-unverify').addEventListener('click', () => {
+        verifyPoolTable(venue.id, false);
+    });
     
     // Update reviews section
     const reviewsContainer = document.getElementById('existing-reviews');
@@ -393,4 +522,294 @@ async function submitReview(poolTableId) {
 // Update the map when selection changes
 function updateMap() {
     initMap();
+}
+
+// Handle pool table verification
+async function verifyPoolTable(tableId, isVerifying) {
+    try {
+        // Find the table in local data
+        const tableIndex = poolTablesData.findIndex(t => t.id === tableId);
+        if (tableIndex === -1) {
+            console.error('Pool table not found:', tableId);
+            return;
+        }
+        
+        const table = poolTablesData[tableIndex];
+        
+        // Update verification data
+        let verificationCount = table.verificationCount || 0;
+        
+        // Log initial values for debugging
+        console.log('Before update:', { 
+            id: table.id, 
+            verified: table.verified, 
+            count: verificationCount 
+        });
+        
+        if (isVerifying) {
+            // User is verifying the pool table exists
+            verificationCount++;
+            table.verified = verificationCount >= 1; // Trust users more - require only 1 verification
+        } else {
+            // User is reporting no pool table
+            verificationCount = Math.max(0, verificationCount - 2); // Subtract 2 from count (stronger weight for negative reports)
+            table.verified = verificationCount >= 1; // Consistent threshold
+        }
+        
+        table.verificationCount = verificationCount;
+        
+        // Log updated values for debugging
+        console.log('After update:', { 
+            id: table.id, 
+            verified: table.verified, 
+            count: verificationCount 
+        });
+        
+        // Update the Firebase document
+        await poolTablesCollection.doc(tableId).update({
+            verified: table.verified,
+            verificationCount: verificationCount
+        });
+        
+        // Update the local data
+        poolTablesData[tableIndex] = table;
+        
+        // Refresh the map markers - first clear all markers
+        markerLayer.clearLayers();
+        
+        // Then add all markers again
+        addPoolTableMarkers();
+        
+        // Refresh the venue details if this is the currently selected venue
+        if (selectedVenue && selectedVenue.id === tableId) {
+            showVenueDetails(table);
+        }
+        
+        // Show feedback to the user
+        alert(`Thank you for ${isVerifying ? 'verifying' : 'reporting'} this location!`);
+        
+    } catch (error) {
+        console.error('Error updating verification status:', error);
+        alert('Error updating verification. Please try again.');
+    }
+}
+
+// Set up the add place modal
+function setupAddPlaceModal() {
+    const addPlaceBtn = document.getElementById('add-place-btn');
+    const modal = document.getElementById('add-place-modal');
+    const closeBtn = document.getElementById('modal-close');
+    const searchInput = document.getElementById('place-search');
+    const searchButton = document.getElementById('search-button');
+    const searchResults = document.getElementById('search-results');
+    const poolInfoForm = document.getElementById('pool-info-form');
+    const cancelBtn = document.getElementById('cancel-add');
+    const newLocationForm = document.getElementById('new-location-form');
+    
+    // Initialize Places Autocomplete service
+    const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+    
+    // Open modal
+    addPlaceBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+        searchInput.focus();
+    });
+    
+    // Close modal
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        resetForm();
+    });
+    
+    // Close on click outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            resetForm();
+        }
+    });
+    
+    // Cancel button
+    cancelBtn.addEventListener('click', () => {
+        poolInfoForm.style.display = 'none';
+        searchResults.style.display = 'block';
+    });
+    
+    // Handle place search
+    searchButton.addEventListener('click', () => {
+        searchForPlaces();
+    });
+    
+    // Search on Enter key
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            searchForPlaces();
+        }
+    });
+    
+    // Search for places
+    function searchForPlaces() {
+        const query = searchInput.value.trim();
+        if (!query) return;
+        
+        // Set search area near the currently selected station
+        const station = subwayData[selectedLine].stations.find(s => s.name === selectedStation);
+        const location = new google.maps.LatLng(station.coords.lat, station.coords.lng);
+        
+        // Search parameters
+        const request = {
+            query: query + ' near ' + selectedStation,
+            location: location,
+            radius: 1500, // Search within 1.5km
+            types: ['bar', 'restaurant', 'night_club', 'establishment']
+        };
+        
+        // Show loading message
+        searchResults.innerHTML = '<div class="search-message">Searching...</div>';
+        
+        // Perform the search
+        placesService.textSearch(request, (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+                displaySearchResults(results);
+            } else {
+                searchResults.innerHTML = '<div class="search-message">No results found. Try a different search term.</div>';
+            }
+        });
+    }
+    
+    // Display search results
+    function displaySearchResults(places) {
+        searchResults.innerHTML = '';
+        
+        places.forEach(place => {
+            const placeItem = document.createElement('div');
+            placeItem.className = 'search-result-item';
+            placeItem.innerHTML = `
+                <h3>${place.name}</h3>
+                <p>${place.formatted_address}</p>
+            `;
+            
+            // When a place is selected
+            placeItem.addEventListener('click', () => {
+                // Get place details to capture hours
+                placesService.getDetails({
+                    placeId: place.place_id,
+                    fields: ['name', 'formatted_address', 'geometry', 'opening_hours']
+                }, (placeDetails, status) => {
+                    if (status === google.maps.places.PlacesServiceStatus.OK) {
+                        selectPlace(placeDetails, place);
+                    } else {
+                        // If details request fails, use original place data
+                        selectPlace(place);
+                    }
+                });
+            });
+            
+            searchResults.appendChild(placeItem);
+        });
+    }
+    
+    // Select a place to add
+    function selectPlace(place, originalPlace) {
+        // Hide search results, show pool info form
+        searchResults.style.display = 'none';
+        poolInfoForm.style.display = 'block';
+        
+        // Get coordinates
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+        
+        // Get hours if available
+        let hours = '';
+        if (place.opening_hours && place.opening_hours.weekday_text) {
+            hours = place.opening_hours.weekday_text.join(', ');
+        }
+        
+        // Set hidden form values
+        document.getElementById('place-id').value = place.place_id || originalPlace.place_id;
+        document.getElementById('place-name').value = place.name;
+        document.getElementById('place-address').value = place.formatted_address || originalPlace.formatted_address;
+        document.getElementById('place-lat').value = lat;
+        document.getElementById('place-lng').value = lng;
+        
+        // Set a default for pool tables
+        document.getElementById('pool-tables').value = '1';
+    }
+    
+    // Handle form submission
+    newLocationForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Get form values
+        const placeId = document.getElementById('place-id').value;
+        const placeName = document.getElementById('place-name').value;
+        const placeAddress = document.getElementById('place-address').value;
+        const placeLat = parseFloat(document.getElementById('place-lat').value);
+        const placeLng = parseFloat(document.getElementById('place-lng').value);
+        const poolTables = parseInt(document.getElementById('pool-tables').value);
+        const tableRate = document.getElementById('table-rate').value;
+        
+        // Create new pool table object
+        const newPoolTable = {
+            id: placeId.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(),
+            name: placeName,
+            address: placeAddress,
+            lat: placeLat,
+            lng: placeLng,
+            rating: 0, // No rating yet
+            ratingDisplay: "No ratings yet",
+            poolTables: poolTables,
+            tableRate: tableRate,
+            reviews: [],
+            verified: true, // Trust the user adding the place
+            verificationCount: 1 // One verification from the person who added it
+        };
+        
+        try {
+            // Add to Firebase
+            await poolTablesCollection.doc(newPoolTable.id).set({
+                name: newPoolTable.name,
+                address: newPoolTable.address,
+                lat: newPoolTable.lat,
+                lng: newPoolTable.lng,
+                rating: 0,
+                ratingDisplay: "No ratings yet",
+                poolTables: newPoolTable.poolTables,
+                tableRate: newPoolTable.tableRate,
+                reviews: [],
+                verified: true,
+                verificationCount: 1
+            });
+            
+            // Add to local data
+            poolTablesData.push(newPoolTable);
+            
+            // Update map - first clear all markers
+            markerLayer.clearLayers();
+            
+            // Then add all markers again
+            addPoolTableMarkers();
+            
+            // Close modal and reset form
+            modal.classList.remove('active');
+            resetForm();
+            
+            // Show success message
+            alert(`${placeName} has been added to the map!`);
+            
+        } catch (error) {
+            console.error('Error adding new pool table:', error);
+            alert('Error adding location. Please try again.');
+        }
+    });
+    
+    // Reset the form
+    function resetForm() {
+        searchInput.value = '';
+        searchResults.innerHTML = '<div class="search-message">Search for places to add</div>';
+        searchResults.style.display = 'block';
+        poolInfoForm.style.display = 'none';
+        document.getElementById('new-location-form').reset();
+    }
 }

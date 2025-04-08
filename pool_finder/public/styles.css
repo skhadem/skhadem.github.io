@@ -235,6 +235,373 @@ h3 {
     color: #1565c0;
 }
 
+/* Google Maps link styles */
+.maps-link {
+    display: inline-block;
+    background-color: #4285F4;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.maps-link:hover {
+    background-color: #3367D6;
+    text-decoration: none;
+}
+
+/* Verification controls */
+.verification-controls {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.verification-controls h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.verification-status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.verification-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.verified {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.unverified {
+    background-color: #FFC107;
+    color: black;
+}
+
+.verification-count {
+    font-size: 13px;
+    color: #666;
+}
+
+.verification-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-verify, .btn-unverify {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-verify {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-verify:hover {
+    background-color: #3d8b40;
+}
+
+.btn-verify:disabled {
+    background-color: #a5d6a7;
+    cursor: not-allowed;
+}
+
+.btn-unverify {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-unverify:hover {
+    background-color: #d32f2f;
+}
+
+.btn-unverify:disabled {
+    background-color: #ef9a9a;
+    cursor: not-allowed;
+}
+
+/* Venue additional info styles */
+.venue-additional-info {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.venue-additional-info p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Popup styles */
+.leaflet-popup-content {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.leaflet-popup-content strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.leaflet-popup-content a {
+    color: #4285F4;
+    text-decoration: none;
+}
+
+.leaflet-popup-content a:hover {
+    text-decoration: underline;
+}
+
+/* Add Place Button */
+.add-place-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #4285F4;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.add-place-btn:hover {
+    background-color: #3367D6;
+    transform: scale(1.05);
+}
+
+/* Add Place Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-close:hover {
+    color: #000;
+}
+
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #4285F4;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.search-results {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.search-result-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f5f5f5;
+}
+
+.search-result-item h3 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+}
+
+.search-result-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.pool-info-form {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-add {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background-color: #3367D6;
+}
+
+.search-message {
+    padding: 15px;
+    text-align: center;
+    color: #666;
+}
+
+@media screen and (max-width: 768px) {
+    .add-place-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+        right: 15px;
+        top: 15px;
+    }
+    
+    .modal-content {
+        padding: 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.3rem;
+    }
+}
+
 /* Mobile responsiveness */
 @media screen and (max-width: 768px) {
     body {

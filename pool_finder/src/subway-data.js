@@ -551,11 +551,29 @@ const subwayData = {
 // We'll load pool tables from db.json via server API - this is just for reference
 const poolTables = [
     { 
-        id: "billiards-hall",
-        name: "Billiards Hall", 
-        address: "123 Jefferson St", 
-        lat: 40.7068, 
-        lng: -73.9209, 
-        rating: 4.5
+        id: "carmelos",
+        name: "Carmelo's", 
+        address: "1544 DeKalb Ave, Brooklyn, NY 11237", 
+        lat: 40.7036, 
+        lng: -73.9223, 
+        rating: 4.6,
+        hours: "Monday-Friday: 12PM-4AM, Saturday-Sunday: 12PM-4AM",
+        poolTables: 1,
+        tableRate: "$2/game",
+        verified: true,
+        verificationCount: 3 // Starting with a few verifications
+    },
+    {
+        id: "icehouse",
+        name: "The Icehouse", 
+        address: "118 Graham Ave, Brooklyn, NY 11206", 
+        lat: 40.7113, 
+        lng: -73.9442, 
+        rating: 4.3,
+        hours: "Monday-Friday: 3PM-4AM, Saturday-Sunday: 12PM-4AM",
+        poolTables: 1,
+        tableRate: "$1.50/game",
+        verified: true,
+        verificationCount: 2 // Starting with a few verifications
     }
 ];

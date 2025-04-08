@@ -10,8 +10,72 @@
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <!-- Add Places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArVpVitBtnFSMmPz6GLnmZ3tdnshvBBRM&libraries=places"></script>
 </head>
 <body>
+    <!-- Add Place Button -->
+    <div class="add-place-btn" id="add-place-btn">+</div>
+    
+    <!-- Add Place Modal -->
+    <div class="modal-overlay" id="add-place-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Pool Table Location</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            
+            <div class="search-section">
+                <h3>Search for a Place</h3>
+                <div class="search-input-container">
+                    <input type="text" id="place-search" class="search-input" placeholder="Search for bars, pool halls, etc...">
+                    <button class="search-button" id="search-button">🔍</button>
+                </div>
+                
+                <div class="search-results" id="search-results">
+                    <div class="search-message">
+                        Search for places to add
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pool-info-form" id="pool-info-form" style="display: none;">
+                <h3>Add Pool Table Details</h3>
+                <form id="new-location-form">
+                    <input type="hidden" id="place-id">
+                    <input type="hidden" id="place-name">
+                    <input type="hidden" id="place-address">
+                    <input type="hidden" id="place-lat">
+                    <input type="hidden" id="place-lng">
+                    
+                    <div class="form-group">
+                        <label for="pool-tables">Number of Pool Tables</label>
+                        <select id="pool-tables" required>
+                            <option value="">Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="table-rate">Table Rate</label>
+                        <input type="text" id="table-rate" placeholder="e.g. $2/game or $12/hour" required>
+                    </div>
+                    
+                    <!-- Rating will be added through reviews -->
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn-cancel" id="cancel-add">Cancel</button>
+                        <button type="submit" class="btn-add">Add Pool Table</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <h1>NYC Pool Finder</h1>
         <div class="controls">
